@@ -6,3 +6,5 @@ langchain_openai==0.1.1
 langchainhub
 selenium==4.19.0
 webdriver-manager==4.0.1
+pydantic-settings==2.0.3
+tweepy==4.14.0

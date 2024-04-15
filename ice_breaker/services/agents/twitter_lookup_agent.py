@@ -13,12 +13,12 @@ from services.tools.tools import get_profile_url
 
 
 
-class LinkedInLookAgent:
+class TwitterLookAgent:
 
     TEMPLATE = """
         Given the full name {name_of_person} and the company where they work, {company_name}, 
-        please provide the URL to their LinkedIn profile page. 
-        Your answer should contain only the URL.
+        I want you to find a link to their Twitter profile page, and extract from it their username
+        In Your Final answer only the person's username
     """
 
     def __init__(self) -> None:
@@ -29,9 +29,9 @@ class LinkedInLookAgent:
     def lookup(self, name:str, company: str) -> str:
         tools_for_agent = [
             Tool(
-                name="Crawl Google 4 linkedin profile page",
+                name="Crawl Google 4 Twitter profile page",
                 func=get_profile_url,
-                description="useful for when you need get the Linkedin Page URL", # Mandatory
+                description="useful for when you need get the Twitter Page URL", # Mandatory
                 )
             ]
 
@@ -43,6 +43,6 @@ class LinkedInLookAgent:
         result = agent_executor.invoke(
         input={"input": prompt_template.format_prompt(name_of_person=name, company_name=company)}
         )
-        linked_profile_url = result["output"]
+        twitter_username = result["output"]
 
-        return linked_profile_url
+        return twitter_username

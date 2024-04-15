@@ -6,12 +6,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import WebDriverException
 from dotenv import load_dotenv, find_dotenv
 import os
+from configurations.settings import settings
 
-load_dotenv(os.path.join(find_dotenv(".env")))
 
 class LinkedinScraper:
     def __init__(self) -> None:
-
+        self.linkedin_username = settings.LINKEDIN_USERNAME
+        self.linkedin_password = settings.LINKEDIN_PASSWORD
         self.driver = None 
         self.initialize_driver()
 
@@ -28,11 +29,9 @@ class LinkedinScraper:
         self.driver.get("https://www.linkedin.com/login") 
         sleep(0.1) 
 
-        linkedin_username = os.getenv("LINKEDIN_USERNAME")
-        linkedin_password = os.getenv("LINKEDIN_PASSWORD")
 
-        self.driver.find_element(By.XPATH, '//*[@id="username"]').send_keys(linkedin_username) 
-        self.driver.find_element(By.XPATH, '//*[@id="password"]').send_keys(linkedin_password) 
+        self.driver.find_element(By.XPATH, '//*[@id="username"]').send_keys(self.linkedin_username) 
+        self.driver.find_element(By.XPATH, '//*[@id="password"]').send_keys(self.linkedin_password) 
         sleep(0.1) 
         self.driver.find_element(By.XPATH, '//*[@id="organic-div"]/form/div[3]/button').click()
         sleep(0.1) 

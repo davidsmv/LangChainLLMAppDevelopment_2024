@@ -1,10 +1,11 @@
 from googlesearch import search
 
-def get_linkedin_profile_url(text: str) -> str:
-    """Searches for LinkedIn Profile POage
+def get_profile_url(text: str) -> str:
+    """Searches for Linkedin or Twitter Profile Page
 
     Args:
-        text (str): name of the person
+        text (str): name of the person and
+        aditional descriptions if neccesary
 
     Returns:
         str: URL
